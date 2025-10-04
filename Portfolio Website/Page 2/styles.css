@@ -1,0 +1,101 @@
+/* About Me Page Specific Styles */
+
+/* Profile Image */
+.profile-image {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-xl);
+    margin: var(--spacing-xl) auto;
+    display: block;
+    transition: var(--transition-normal);
+}
+
+.profile-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Introduction Section */
+.intro-section {
+    background: var(--gray-100);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    margin: var(--spacing-xl) 0;
+    border-left: 4px solid var(--secondary-color);
+}
+
+.intro-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--gray-700);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Fun Facts Section */
+.funfacts {
+    text-align: left;
+    background: var(--gray-100);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    margin: var(--spacing-xl) 0;
+}
+
+.funfacts h2 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+}
+
+/* Favorites Section */
+.favorites-section {
+    background: linear-gradient(135deg, var(--gray-100), var(--gray-200));
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    margin: var(--spacing-xl) 0;
+    text-align: center;
+}
+
+.favorites-section h2 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-lg);
+}
+
+.favorite-song {
+    font-size: 1.1rem;
+    color: var(--gray-700);
+    margin-bottom: var(--spacing-md);
+}
+
+/* Audio Player Styling */
+audio {
+    display: block;
+    margin: var(--spacing-lg) auto;
+    width: 100%;
+    max-width: 400px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-normal);
+}
+
+audio:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-image {
+        max-width: 300px;
+    }
+    
+    .intro-section,
+    .funfacts,
+    .favorites-section {
+        padding: var(--spacing-lg);
+    }
+    
+    .intro-text {
+        font-size: 1.1rem;
+    }
+}
