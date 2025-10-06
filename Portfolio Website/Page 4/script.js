@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Add typing effect to page title
-    const pageTitle = document.querySelector('.hero-title');
+    const pageTitle = document.querySelector('h1');
     if (pageTitle) {
         const text = pageTitle.textContent;
         pageTitle.textContent = '';
