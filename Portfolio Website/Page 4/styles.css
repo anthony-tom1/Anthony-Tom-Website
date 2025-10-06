@@ -1,5 +1,17 @@
 /* Programming Projects Page Specific Styles */
 
+/* Page Title */
+h1 {
+    font-size: 3.5rem !important;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--spacing-xl);
+    text-align: center;
+}
+
 /* Project Links */
 .project-links {
     display: grid;
