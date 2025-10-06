@@ -61,6 +61,31 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
+    // Add typing effect to page title
+    const pageTitle = document.querySelector('.hero-title');
+    if (pageTitle) {
+        const text = pageTitle.textContent;
+        pageTitle.textContent = '';
+        pageTitle.style.borderRight = '2px solid var(--secondary-color)';
+        
+        let i = 0;
+        const typeWriter = () => {
+            if (i < text.length) {
+                pageTitle.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            } else {
+                // Remove cursor after typing is complete
+                setTimeout(() => {
+                    pageTitle.style.borderRight = 'none';
+                }, 1000);
+            }
+        };
+        
+        // Start typing effect after a short delay
+        setTimeout(typeWriter, 500);
+    }
+
     // Add parallax effect to background
     window.addEventListener('scroll', function() {
         const scrolled = window.pageYOffset;
