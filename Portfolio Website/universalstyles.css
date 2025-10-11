@@ -149,14 +149,13 @@ p {
 
 /* Header and Navigation */
 header {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 249, 250, 0.95) 100%);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(113, 128, 150, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 9999;
     transition: var(--transition-normal);
-    box-shadow: 0 2px 20px rgba(113, 128, 150, 0.1);
 }
 
 .navbar {
@@ -180,30 +179,15 @@ header {
     position: relative;
     letter-spacing: 0.01em;
     border-radius: 8px;
-    z-index: 10;
+    z-index: 10000;
     pointer-events: auto;
     cursor: pointer;
 }
 
-.navbar a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.1), transparent);
-    transition: var(--transition-normal);
-}
-
-.navbar a:hover::before {
-    left: 100%;
-}
 
 .navbar a:hover {
-    color: #2d3748;
-    background: linear-gradient(135deg, rgba(113, 128, 150, 0.1) 0%, rgba(74, 85, 104, 0.1) 100%);
-    transform: translateY(-1px);
+    color: #0071e3;
+    background-color: rgba(0, 113, 227, 0.1);
 }
 
 .navbar a:active {
