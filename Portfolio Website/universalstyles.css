@@ -104,8 +104,8 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
     font-size: 3.5rem;
-    font-weight: 300;
-    background: linear-gradient(135deg, #4a5568 0%, #2d3748 50%, #1a202c 100%);
+    font-weight: 600;
+    background: linear-gradient(135deg, #03050c 0%, #0d1c49 30%, #1d4ed8 70%, #1e3a8a 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -116,6 +116,7 @@ h1 {
 h2 {
     font-size: 2.5rem;
     font-weight: 400;
+    font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #718096 0%, #4a5568 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -127,6 +128,7 @@ h2 {
 h3 {
     font-size: 1.5rem;
     font-weight: 500;
+    font-family: 'Poppins', sans-serif;
     color: #4a5568;
     margin-bottom: var(--spacing-md);
     letter-spacing: 0.01em;
@@ -138,6 +140,7 @@ p {
     line-height: 1.6;
     color: #718096;
     font-weight: 400;
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Layout */

@@ -25,20 +25,71 @@
                 padding: 0 2rem;
             }
 
+            /* Dynamic Cave-like Background */
+            .dynamic-bg {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+                background: linear-gradient(135deg, 
+                    #f8f9fa 0%, 
+                    #ffffff 50%, 
+                    #f1f3f4 100%);
+                transition: none; /* Remove transition for smooth color interpolation */
+            }
+
+            /* Cave exploration gradient - gradually darkening */
+            .cave-gradient {
+                background: linear-gradient(135deg, 
+                    var(--cave-color-1, #f8f9fa) 0%, 
+                    var(--cave-color-2, #ffffff) 50%, 
+                    var(--cave-color-3, #f1f3f4) 100%);
+            }
+
             .hero-content {
                 max-width: 600px;
             }
 
             .hero-title {
                 font-size: 4rem;
-                font-weight: 300;
-                background: linear-gradient(135deg, #4a5568 0%, #2d3748 50%, #1a202c 100%);
+                font-weight: 600;
+                background: linear-gradient(135deg, #03050c 0%, #0d1c49 30%, #1d4ed8 70%, #1e3a8a 100%);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
                 background-clip: text;
                 margin-bottom: 1.5rem;
                 letter-spacing: -0.02em;
                 line-height: 1.1;
+                position: relative;
+                background-size: 200% 200%;
+            }
+
+            /* Shining gradient animation */
+            .hero-title.shining {
+                background: linear-gradient(135deg, 
+                    #03050c 0%, 
+                    #0d1c49 20%, 
+                    #1d4ed8 40%, 
+                    #ffffff 50%, 
+                    #1d4ed8 60%, 
+                    #1e3a8a 80%, 
+                    #03050c 100%);
+                background-size: 300% 300%;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                animation: shineGradient 3s ease-in-out 0s, shineGradient 3s ease-in-out 30s infinite;
+            }
+
+            @keyframes shineGradient {
+                0% {
+                    background-position: 100% 50%;
+                }
+                100% {
+                    background-position: 0% 50%;
+                }
             }
 
             .hero-subtitle {
@@ -46,6 +97,7 @@
                 color: #6e6e73;
                 margin-bottom: 1rem;
                 font-weight: 400;
+                font-family: 'Poppins', sans-serif;
                 word-spacing: 0;
             }
 
@@ -55,6 +107,7 @@
                 line-height: 1.6;
                 margin-bottom: 2rem;
                 font-weight: 400;
+                font-family: 'Poppins', sans-serif;
             }
 
             .linkedin-connect {
@@ -83,8 +136,9 @@
             }
 
             #linkedinlogo {
-                height: 20px;
+                height: 40px;
                 width: auto;
+                object-fit: contain;
             }
 
             .hero-image {
@@ -346,6 +400,8 @@
         </style>
     </head>
     <body>
+        <!-- Dynamic Background -->
+        <div class="dynamic-bg" id="dynamicBg"></div>
         <header>
             <nav class="navbar">
                 <a href="index.html">Home</a>
@@ -363,7 +419,7 @@
                     <p class="hero-description">Certified Associate in Project Management</p>
                     <div class="linkedin-connect">
                         <a href="https://www.linkedin.com/in/anthonytom1/" target="_blank" class="linkedin-button">
-                            <img id="linkedinlogo" src="Portfolio Website/Page 1/LinkedIn_Logo.png" alt="LinkedIn Profile"/>
+                            <img id="linkedinlogo" src="Portfolio Website/Page 1/LinkedIn.png" alt="LinkedIn Profile"/>
                             <span>Connect on LinkedIn</span>
                         </a>
                     </div>
@@ -528,6 +584,98 @@
             setInterval(() => {
                 moveSlide(1);
             }, 5000);
+
+            // Cave-like Gradual Darkening Background Effect
+            document.addEventListener('DOMContentLoaded', function() {
+                const dynamicBg = document.getElementById('dynamicBg');
+                
+                // Define blue-purple progression starting at profile area
+                const caveColors = [
+                    { r: 210, g: 215, b: 230 }, // Medium dark blue-purple (profile area start)
+                    { r: 200, g: 205, b: 225 }, // Dark blue-purple
+                    { r: 190, g: 195, b: 220 }, // Darker blue-purple
+                    { r: 180, g: 185, b: 215 }, // Dark blue-purple
+                    { r: 170, g: 175, b: 210 }, // Very dark blue-purple
+                    { r: 160, g: 165, b: 205 }, // Near black blue-purple
+                    { r: 150, g: 155, b: 200 }, // Almost black blue-purple
+                    { r: 140, g: 145, b: 195 }, // Deep cave blue-purple
+                    { r: 130, g: 135, b: 190 }, // Very deep blue-purple
+                    { r: 120, g: 125, b: 185 }, // Deepest cave blue-purple
+                    { r: 110, g: 115, b: 180 }, // Cave bottom blue-purple
+                    { r: 100, g: 105, b: 175 }, // Darker cave
+                    { r: 90, g: 95, b: 170 },   // Even darker cave
+                    { r: 80, g: 85, b: 165 },  // Very dark cave
+                    { r: 70, g: 75, b: 160 }   // Darkest cave (deepest)
+                ];
+                
+                function interpolateColor(color1, color2, factor) {
+                    return {
+                        r: Math.round(color1.r + (color2.r - color1.r) * factor),
+                        g: Math.round(color1.g + (color2.g - color1.g) * factor),
+                        b: Math.round(color1.b + (color2.b - color1.b) * factor)
+                    };
+                }
+                
+                function rgbToHex(r, g, b) {
+                    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+                }
+                
+                function updateCaveBackground(scrollProgress) {
+                    // Calculate which two colors to interpolate between
+                    const totalColors = caveColors.length - 1;
+                    const scaledProgress = scrollProgress * totalColors;
+                    const colorIndex = Math.floor(scaledProgress);
+                    const factor = scaledProgress - colorIndex;
+                    
+                    // Get the two colors to interpolate between
+                    const color1 = caveColors[Math.min(colorIndex, caveColors.length - 1)];
+                    const color2 = caveColors[Math.min(colorIndex + 1, caveColors.length - 1)];
+                    
+                    // Interpolate between the colors
+                    const interpolatedColor = interpolateColor(color1, color2, factor);
+                    
+                    // Create a subtle gradient with the interpolated color
+                    const baseColor = rgbToHex(interpolatedColor.r, interpolatedColor.g, interpolatedColor.b);
+                    const darkerColor = rgbToHex(
+                        Math.max(interpolatedColor.r - 20, 0),
+                        Math.max(interpolatedColor.g - 20, 0),
+                        Math.max(interpolatedColor.b - 20, 0)
+                    );
+                    const lighterColor = rgbToHex(
+                        Math.min(interpolatedColor.r + 20, 255),
+                        Math.min(interpolatedColor.g + 20, 255),
+                        Math.min(interpolatedColor.b + 20, 255)
+                    );
+                    
+                    // Apply the gradient
+                    dynamicBg.style.background = `linear-gradient(135deg, ${lighterColor} 0%, ${baseColor} 50%, ${darkerColor} 100%)`;
+                }
+                
+                // Smooth scroll-based cave exploration
+                let ticking = false;
+                
+                function handleScroll() {
+                    if (!ticking) {
+                        requestAnimationFrame(() => {
+                            const scrollY = window.scrollY;
+                            const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+                            const scrollProgress = Math.min(scrollY / documentHeight, 1);
+                            
+                            // Update background based on scroll progress
+                            updateCaveBackground(scrollProgress);
+                            
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                }
+                
+                // Add scroll event listener
+                window.addEventListener('scroll', handleScroll);
+                
+                // Initialize with entrance colors
+                updateCaveBackground(0);
+            });
         </script>
         <script src="Portfolio Website/Page 1/script.js"></script>
     </body>
