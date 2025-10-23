@@ -90,6 +90,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Remove cursor after typing is complete
                 setTimeout(() => {
                     heroTitle.style.borderRight = 'none';
+                    // Add shining animation after typing completes
+                    heroTitle.classList.add('shining');
                 }, 1000);
             }
         };
