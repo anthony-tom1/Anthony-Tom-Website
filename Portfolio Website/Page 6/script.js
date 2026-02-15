@@ -72,4 +72,22 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   init();
+
+  // Typing effect for hero title (same as other pages)
+  const pageTitle = document.querySelector('.hero-title');
+  if (pageTitle) {
+    const text = pageTitle.textContent.trim();
+    pageTitle.textContent = '';
+
+    let i = 0;
+    const typeWriter = () => {
+      if (i < text.length) {
+        pageTitle.textContent += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 100);
+      }
+    };
+
+    setTimeout(typeWriter, 500);
+  }
 });
