@@ -1,0 +1,141 @@
+/* Running Tracker Page - Dark theme override */
+body.running-page {
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #0d0d1a 100%) !important;
+  background-attachment: fixed !important;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.running-page article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 100%;
+}
+
+/* Miles Run Tracker Container */
+.tracker-container {
+  background: linear-gradient(145deg, #1e1e3f 0%, #15152a 100%);
+  border: 2px solid #2d2d5a;
+  border-radius: 16px;
+  padding: 3rem;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.tracker-label {
+  color: #8b8bb8;
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 500;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+.scoreboard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.digit-group {
+  display: flex;
+  gap: 2px;
+  background: #0a0a18;
+  padding: 0.5rem 0.25rem;
+  border-radius: 8px;
+  border: 1px solid #2d2d5a;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.digit-wheel {
+  width: 48px;
+  height: 56px;
+  position: relative;
+  overflow: hidden;
+  background: #0a0a18;
+  border-radius: 4px;
+}
+
+.digit-strip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  will-change: transform;
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.digit-strip span {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #00ff88;
+  text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+  flex-shrink: 0;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+.decimal-point {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 0.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #00ff88;
+  text-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+.description-box {
+  margin-top: 1.5rem;
+  background: linear-gradient(145deg, #1e1e3f 0%, #15152a 100%);
+  border: 2px solid #2d2d5a;
+  border-radius: 16px;
+  padding: 1rem 2rem;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  text-align: center;
+}
+
+.description {
+  color: #6b6b8a;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+/* Header/navbar contrast on dark running page */
+.running-page header {
+  background: rgba(15, 15, 35, 0.95) !important;
+  border-bottom-color: rgba(45, 45, 90, 0.8) !important;
+}
+
+.running-page header .navbar a {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.running-page header .navbar a:hover {
+  color: #00ff88 !important;
+  background-color: rgba(0, 255, 136, 0.15) !important;
+}
+
+.running-page footer {
+  background: transparent !important;
+  color: rgba(139, 139, 184, 0.8) !important;
+  border-top: 1px solid rgba(45, 45, 90, 0.6) !important;
+}
