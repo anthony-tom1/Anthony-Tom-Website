@@ -1,25 +1,23 @@
-/* Running Tracker Page - Dark theme override */
-body.running-page {
+/* Running Tracker Page */
+.running-page {
   background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 50%, #0d0d1a 100%) !important;
   background-attachment: fixed !important;
-  min-height: 100vh;
+}
+
+.running-page .hero-title {
+  color: #7b9cff !important;
+  -webkit-text-fill-color: #7b9cff !important;
+  background: none !important;
+}
+
+/* Miles Run Tracker - styled card within page */
+.tracker-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 2rem;
+  margin: 2rem 0;
 }
 
-.running-page article {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex: 1;
-  width: 100%;
-}
-
-/* Miles Run Tracker Container */
 .tracker-container {
   background: linear-gradient(145deg, #1e1e3f 0%, #15152a 100%);
   border: 2px solid #2d2d5a;
@@ -29,7 +27,7 @@ body.running-page {
 }
 
 .tracker-label {
-  color: #8b8bb8;
+  color: #7b9cff;
   font-size: 1rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -104,6 +102,7 @@ body.running-page {
 
 .description-box {
   margin-top: 1.5rem;
+  margin-bottom: 0;
   background: linear-gradient(145deg, #1e1e3f 0%, #15152a 100%);
   border: 2px solid #2d2d5a;
   border-radius: 16px;
@@ -119,23 +118,3 @@ body.running-page {
   font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
 }
 
-/* Header/navbar contrast on dark running page */
-.running-page header {
-  background: rgba(15, 15, 35, 0.95) !important;
-  border-bottom-color: rgba(45, 45, 90, 0.8) !important;
-}
-
-.running-page header .navbar a {
-  color: rgba(255, 255, 255, 0.9) !important;
-}
-
-.running-page header .navbar a:hover {
-  color: #00ff88 !important;
-  background-color: rgba(0, 255, 136, 0.15) !important;
-}
-
-.running-page footer {
-  background: transparent !important;
-  color: rgba(139, 139, 184, 0.8) !important;
-  border-top: 1px solid rgba(45, 45, 90, 0.6) !important;
-}
