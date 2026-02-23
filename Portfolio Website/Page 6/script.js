@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
       for (let i = 0; i <= 9; i++) {
         strip.push(`<span>${i}</span>`);
       }
+      strip.push('<span> </span>');  // blank between 9 and bread
     }
     return strip.join('');
   }
