@@ -7,13 +7,12 @@ document.addEventListener('DOMContentLoaded', function() {
   const positions = ['thousands', 'hundreds', 'tens', 'ones', 'tenths'];
 
   function createDigitStrip(cycles = 8) {
-    const strip = [];
+    const strip = [];      
+    strip.push(`<span>${PLACEHOLDER_CHAR}</span>`);
     for (let c = 0; c < cycles; c++) {
-      strip.push(`<span>${PLACEHOLDER_CHAR}</span>`);
       for (let i = 0; i <= 9; i++) {
         strip.push(`<span>${i}</span>`);
       }
-      strip.push('<span> </span>');  // blank between 9 and bread
     }
     return strip.join('');
   }
