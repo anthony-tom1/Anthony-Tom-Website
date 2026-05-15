@@ -1,6 +1,6 @@
 // Miles Run Tracker - Rolling number wheel
 document.addEventListener('DOMContentLoaded', function() {
-  const MILES_RUN = 1002.1;
+  const MILES_RUN = 1161.4;
   const PLACEHOLDER_CHAR = '🍞';
   const PLACEHOLDER_PAUSE = 1200;
   const DIGIT_HEIGHT = 56;
