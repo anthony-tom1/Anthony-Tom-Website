@@ -78,7 +78,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (heroTitle) {
         const text = heroTitle.textContent;
         heroTitle.textContent = '';
-        heroTitle.style.borderRight = '2px solid var(--secondary-color)';
         
         let i = 0;
         const typeWriter = () => {
@@ -89,7 +88,6 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 // Remove cursor after typing is complete
                 setTimeout(() => {
-                    heroTitle.style.borderRight = 'none';
                     // Add shining animation after typing completes
                     heroTitle.classList.add('shining');
                 }, 1000);

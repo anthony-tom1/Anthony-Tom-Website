@@ -66,7 +66,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (pageTitle) {
         const text = pageTitle.textContent;
         pageTitle.textContent = '';
-        pageTitle.style.borderRight = '2px solid var(--secondary-color)';
         
         let i = 0;
         const typeWriter = () => {
@@ -74,11 +73,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 pageTitle.textContent += text.charAt(i);
                 i++;
                 setTimeout(typeWriter, 100);
-            } else {
-                // Remove cursor after typing is complete
-                setTimeout(() => {
-                    pageTitle.style.borderRight = 'none';
-                }, 1000);
             }
         };
         
