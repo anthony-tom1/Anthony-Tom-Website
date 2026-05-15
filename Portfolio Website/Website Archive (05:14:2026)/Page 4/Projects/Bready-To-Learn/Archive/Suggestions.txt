@@ -1,0 +1,9 @@
+What to add to website:
+
+(DONE) - Change buttons on front page to navigation bar 
+- Website is good on desktop
+- Make the background more clear?
+- use more professional fonts
+- front page add descriptions + pictures (like a typical website)
+- add more academic subjects
+- Improve Portrait Mobile Interface (Navigation bars need to be fully shown) (Landscape Mobile Interface is good)

@@ -1,0 +1,93 @@
+<html>
+	<head>
+	    <script src="display.js"></script>
+        <script src="utilities.js"></script>
+		<script>
+            let myCanvas = makeCanvas();
+            let ctx = myCanvas.getContext("2d");
+            
+            let r01 = rectangle(150, 100, 100, 200);
+			
+			let pointer = makePointer(myCanvas);
+
+			let t01 = trafficLight(200, 140, 50, 0);
+			let t02 = trafficLight(200, 200, 50, 60);
+			let t03 = trafficLight(200, 260, 50, 120);
+			
+			let myText = document.getElementById("text1");
+            
+			pointer.press = () => {
+                if(pointer.hitTestSprite(t01)) {
+                    t01.on = !t01.on;
+                }
+                if(pointer.hitTestSprite(t02)) {
+                    t02.on = !t02.on;
+                }
+                if(pointer.hitTestSprite(t03)) {
+                    t03.on = !t03.on;
+                }
+            };
+			/* pointer.release = () => {
+				if(pointer.hitTestSprite(t01)) {
+				    t01.anim = !t01.anim;
+				}			
+				if(pointer.hitTestSprite(t02)) {
+				    t02.anim = !t02.anim;
+				}				
+				if(pointer.hitTestSprite(t03)) {
+				    t03.anim = !t03.anim;
+				}
+			}; */
+			pointer.tap = () => {};
+			
+			mainLoop();
+			
+			function mainLoop() {
+				requestAnimationFrame(mainLoop);
+				update();
+				testPointer(pointer, text1);
+				render(myCanvas);
+			}
+			
+			function update() {
+			}
+            
+            function redLight() {
+                t01.on = true;
+                t02.on = false;
+                t03.on = false;
+                trafficLightStatus.innerHTML = "STOP!";
+            }
+            function yellowLight() {
+                t01.on = false;
+                t02.on = true;
+                t03.on = false;
+                trafficLightStatus.innerHTML = "WAIT!";
+            }
+            function greenLight() {
+                t01.on = false;
+                t02.on = false;
+                t03.on = true;
+                trafficLightStatus.innerHTML = "GO!";
+            }
+            
+            function trafficLightAction() {
+                let duration = 0
+                for (let i = 0; i < 5; i++) { /* 5 iterations */
+                    setTimeout(greenLight, duration + 1000); /* 3000 milliseconds */
+                    setTimeout(yellowLight, duration + 4000); /* 3000 milliseconds */
+                    setTimeout(redLight, duration + 7000); /* 3000 milliseconds */
+                    duration += 9000;
+                }
+            }
+		</script>
+	</head>
+	<body>
+        <p id="text1">Text</p>
+        <button onclick="redLight()">Red Light</button>
+        <button onclick="yellowLight()">Yellow Light</button>
+        <button onclick="greenLight()">Green Light</button>
+        <button onclick="trafficLightAction()">Working Traffic Light</button>
+        <h1 id="trafficLightStatus"></h1>
+	</body>
+</html>

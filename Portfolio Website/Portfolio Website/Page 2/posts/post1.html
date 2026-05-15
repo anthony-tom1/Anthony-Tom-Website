@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Blog Post – Hello World</title>
+
+        <!-- Styles and Fonts -->
+        <link rel="stylesheet" href="../../universalstyles.css"/>
+        <link rel="stylesheet" href="../styles.css"/>
+        <link rel="icon" type="image/x-icon" href="../../Images/bread.png">
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+        <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"/>
+
+        <!-- Script -->
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script>
+
+        <!-- Optional custom button styling -->
+        <style>
+            .back-button {
+                background-color: #ffffff;
+                color: #1a3650;
+                border: 1px solid #d0e6f5;
+                border-radius: 999px;
+                padding: 8px 16px;
+                font-size: 1em;
+                font-family: 'Google Sans', system-ui, sans-serif;
+                font-weight: 500;
+                cursor: pointer;
+                transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+                margin-top: 15px;
+                box-shadow: 0 2px 8px rgba(26, 54, 80, 0.06);
+            }
+
+            .back-button:hover {
+                background-color: #e8f3fb;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 14px rgba(26, 54, 80, 0.1);
+            }
+
+            article {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+                font-family: 'Google Sans', system-ui, sans-serif;
+                text-align: left;
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                .back-button:hover {
+                    transform: none;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <a href="../../../index.html">Home</a>
+                <a href="../../Page 2/blog.html">Blog</a>
+                <a href="../../Page 3/achievements.html">Achievements</a>
+                <a href="../../Page 4/programmingprojects.html">Programming Projects</a>
+                <a href="../../Page 5/resume.html">Resume</a>
+                <a href="../../Page 6/running.html">⚡⚡⚡</a>
+            </nav>
+        </header>
+
+        <article class="fade-in">
+            <button class="back-button" onclick="goBack()">← Back</button>
+            <h1 class="hero-title" style="text-align: center;">Who is Anthony Tom?</h1>
+            <img src="../../Images/Travel Bread.jpeg" alt="Travel Bread" class="blog-image" 
+                style="width: 50%; height: auto; display: block; margin: 20px auto; border-radius: 12px;">
+            <p>Hey, I'm Anthony Tom!</p>
+            <!--<p>I am the <b>Bread Legend</b>.</p>-->
+        </article>
+
+        <footer>
+            <div><span>&#169; Anthony Tom</span></div>
+        </footer>
+    </body>
+</html>

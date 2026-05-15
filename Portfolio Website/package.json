@@ -1,0 +1,11 @@
+{
+  "name": "anthony-tom-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "vite": "^8.0.13"
+  }
+}

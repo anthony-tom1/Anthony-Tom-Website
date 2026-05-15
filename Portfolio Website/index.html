@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset='UTF-8'/>
+        <title>Anthony Tom</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="preconnect" href="https://fonts.googleapis.com"/>
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+        <link rel="icon" type="image/x-icon" href="Portfolio Website/Images/bread.png">
+        <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" href="Portfolio Website/universalstyles.css"/>
+        <link rel="stylesheet" href="Portfolio Website/Page 1/styles.css"/>
+
+        <style>
+            /* Modern Hero Section */
+            .hero-section {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 4rem;
+                align-items: center;
+                margin: 4rem 0;
+                padding: 0 2rem;
+            }
+
+            /* Dynamic Cave-like Background */
+            .dynamic-bg {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1;
+                background: linear-gradient(
+                    135deg,
+                    #f5faff 0%,
+                    #ffffff 52%,
+                    #e8f3fb 100%
+                );
+                transition: none;
+            }
+
+            .cave-gradient {
+                background: linear-gradient(
+                    135deg,
+                    var(--cave-color-1, #f5faff) 0%,
+                    var(--cave-color-2, #ffffff) 50%,
+                    var(--cave-color-3, #e8f3fb) 100%
+                );
+            }
+
+            .hero-content {
+                max-width: 600px;
+            }
+
+            .hero-title {
+                font-family: 'Google Sans', system-ui, sans-serif;
+                font-size: 4rem;
+                font-weight: 700;
+                background: linear-gradient(
+                    125deg,
+                    #1a3650 0%,
+                    #244a6c 38%,
+                    #336d9c 72%,
+                    #1a3650 100%
+                );
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                margin-bottom: 1.5rem;
+                letter-spacing: -0.03em;
+                line-height: 1.1;
+                position: relative;
+                background-size: 200% 200%;
+            }
+
+            .hero-title.shining {
+                background: linear-gradient(
+                    125deg,
+                    #1a3650 0%,
+                    #336d9c 22%,
+                    #94cff4 50%,
+                    #336d9c 78%,
+                    #1a3650 100%
+                );
+                background-size: 280% 280%;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                animation: shineGradient 4s ease-in-out 0s, shineGradient 4s ease-in-out 34s infinite;
+            }
+
+            @keyframes shineGradient {
+                0% {
+                    background-position: 96% 50%;
+                }
+                100% {
+                    background-position: 8% 50%;
+                }
+            }
+
+            .hero-subtitle {
+                font-size: 1.5rem;
+                color: #336d9c;
+                margin-bottom: 1rem;
+                font-weight: 500;
+                font-family: 'Google Sans', system-ui, sans-serif;
+                word-spacing: 0;
+            }
+
+            .hero-description {
+                font-size: 1.1rem;
+                color: #244a6c;
+                line-height: 1.68;
+                margin-bottom: 2rem;
+                font-weight: 400;
+                font-family: 'Google Sans', system-ui, sans-serif;
+            }
+
+            .linkedin-connect {
+                margin-top: 2rem;
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+                .hero-title.shining {
+                    animation: none !important;
+                }
+            }
+
+            .linkedin-button {
+                display: inline-flex;
+                align-items: center;
+                gap: 0.75rem;
+                padding: 0.875rem 1.75rem;
+                background: linear-gradient(135deg, #b6dff7 0%, #dceefa 100%);
+                color: #1a3650;
+                text-decoration: none;
+                border-radius: 999px;
+                font-weight: 700;
+                font-family: 'Google Sans', system-ui, sans-serif;
+                transition: box-shadow 0.28s ease, transform 0.28s ease, background 0.28s ease;
+                box-shadow: 0 10px 28px rgba(26, 54, 80, 0.12);
+                border: 1px solid rgba(26, 54, 80, 0.08);
+            }
+
+            .linkedin-button:hover {
+                background: linear-gradient(135deg, #c8e9fc 0%, #eaf6ff 100%);
+                transform: translateY(-2px);
+                box-shadow: 0 14px 36px rgba(26, 54, 80, 0.16);
+                color: #1a3650;
+            }
+
+            .linkedin-button:focus-visible {
+                outline: 2px solid #336d9c;
+                outline-offset: 3px;
+            }
+
+            #linkedinlogo {
+                height: 40px;
+                width: auto;
+                object-fit: contain;
+                border: none;
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            .hero-image {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .hero-photo {
+                width: 400px;
+                height: 400px;
+                border-radius: 50%;
+                object-fit: cover;
+                box-shadow: 0 12px 40px rgba(26, 54, 80, 0.14);
+                border: 3px solid rgba(176, 212, 237, 0.75);
+                transition: transform 0.28s ease, box-shadow 0.28s ease;
+            }
+
+            .hero-photo:hover {
+                transform: scale(1.02);
+                box-shadow: 0 24px 55px rgba(26, 54, 80, 0.2);
+                border-color: rgba(136, 198, 235, 0.85);
+            }
+
+            .content-grid {
+                display: grid !important;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                margin: 2rem 0;
+                padding: 0 2rem;
+                width: 100%;
+            }
+
+            .info-card {
+                background: linear-gradient(148deg, #ffffff 0%, #f5faff 52%, #e8f3fb 100%);
+                border-radius: 18px;
+                padding: 2.5rem;
+                box-shadow: 0 12px 40px rgba(26, 54, 80, 0.09);
+                border: 1px solid #d0e6f5;
+                transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+                margin-bottom: 2rem;
+                display: block;
+                backdrop-filter: blur(8px);
+            }
+
+            .info-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 20px 52px rgba(26, 54, 80, 0.12);
+                border-color: #b0d4ed;
+            }
+
+            .info-card h2 {
+                font-family: 'Google Sans', system-ui, sans-serif;
+                font-weight: 700;
+                color: #1a3650;
+                background: none;
+                background-clip: border-box;
+                -webkit-background-clip: unset;
+                -webkit-text-fill-color: #1a3650;
+                margin-bottom: 1.5rem;
+                font-size: 2rem;
+                letter-spacing: -0.025em;
+            }
+
+            .info-card p, .info-card ul {
+                color: #244a6c;
+                line-height: 1.68;
+                font-size: 1.0625rem;
+                font-weight: 400;
+                font-family: 'Google Sans', system-ui, sans-serif;
+            }
+
+            .info-card ul {
+                list-style: none;
+                padding-left: 0;
+            }
+
+            .info-card ul li {
+                padding: 0.75rem 0;
+                padding-left: 1.5rem;
+                position: relative;
+                border-bottom: 1px solid rgba(208, 230, 245, 0.95);
+            }
+
+            .info-card ul li:last-child {
+                border-bottom: none;
+            }
+
+            .info-card ul li:before {
+                content: "•";
+                position: absolute;
+                left: 0;
+                color: #4f9fd4;
+                font-weight: bold;
+                font-size: 1.2rem;
+            }
+
+            .full-width-card {
+                grid-column: 1 / -1;
+            }
+
+            /* Image Carousel Styles */
+            .carousel-section {
+                margin: 3rem 0;
+                padding: 3rem 2rem;
+                background: linear-gradient(135deg, #1a3650 0%, #336d9c 55%, #244a6c 100%);
+                border-radius: 18px;
+                border: 1px solid rgba(141, 196, 234, 0.5);
+                box-shadow: 0 20px 50px rgba(26, 54, 80, 0.2);
+            }
+
+            .carousel-section h2 {
+                color: #f5faff;
+                font-family: 'Google Sans', system-ui, sans-serif;
+                font-weight: 700;
+                text-align: center;
+                font-size: 2.25rem;
+                margin-bottom: 2rem;
+                letter-spacing: -0.02em;
+            }
+
+            .carousel-container {
+                position: relative;
+                max-width: 900px;
+                margin: 0 auto;
+                overflow: hidden;
+                border-radius: 14px;
+                border: 1px solid rgba(176, 212, 237, 0.35);
+                box-shadow: 0 22px 60px rgba(0, 0, 0, 0.25);
+            }
+
+            .carousel-nav {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: rgba(245, 250, 255, 0.92);
+                border: 1px solid rgba(141, 196, 234, 0.4);
+                color: #1a3650;
+                font-size: 2rem;
+                padding: 1rem 1.35rem;
+                cursor: pointer;
+                transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+                border-radius: 10px;
+                z-index: 10;
+            }
+
+            .carousel-nav:hover {
+                background: rgba(182, 223, 247, 0.95);
+                color: #1a3650;
+            }
+
+            .dot {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                background: rgba(245, 250, 255, 0.45);
+                cursor: pointer;
+                transition: background 0.25s ease, transform 0.25s ease;
+            }
+
+            .dot.active {
+                background: #a8daf4;
+                transform: scale(1.06);
+            }
+
+            .carousel-track {
+                display: flex;
+                transition: transform 0.5s ease-in-out;
+            }
+
+            .carousel-slide {
+                min-width: 100%;
+                position: relative;
+            }
+
+            .carousel-slide img {
+                width: 100%;
+                height: 500px;
+                object-fit: cover;
+                display: block;
+            }
+
+            .carousel-caption {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+                color: white;
+                padding: 2rem;
+                text-align: center;
+            }
+
+            .carousel-caption h3 {
+                margin: 0 0 0.5rem 0;
+                font-size: 1.5rem;
+            }
+
+            .carousel-caption p {
+                margin: 0;
+                font-size: 1rem;
+                opacity: 0.9;
+            }
+
+            .carousel-nav.prev {
+                left: 1rem;
+            }
+
+            .carousel-nav.next {
+                right: 1rem;
+            }
+
+            .carousel-dots {
+                display: flex;
+                justify-content: center;
+                gap: 0.5rem;
+                margin-top: 1.5rem;
+            }
+
+            /* Mobile responsiveness */
+            @media (max-width: 768px) {
+                .hero-section {
+                    grid-template-columns: 1fr;
+                    gap: 2rem;
+                    text-align: center;
+                }
+                
+                .hero-title {
+                    font-size: 3rem;
+                }
+                
+                .hero-subtitle {
+                    font-size: 1.3rem;
+                }
+                
+                .content-grid {
+                    grid-template-columns: 1fr;
+                    padding: 0 1rem;
+                    gap: 1.5rem;
+                }
+                
+                .info-card {
+                    padding: 1.5rem;
+                    margin-bottom: 1.5rem;
+                }
+                
+                .info-card h2 {
+                    font-size: 1.5rem;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .hero-title {
+                    font-size: 2.5rem;
+                }
+                
+                .hero-photo {
+                    width: 300px;
+                    height: 300px;
+                }
+                
+                .content-grid {
+                    padding: 0 0.5rem;
+                    gap: 1rem;
+                }
+                
+                .info-card {
+                    padding: 1rem;
+                    margin-bottom: 1rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Dynamic Background -->
+        <div class="dynamic-bg" id="dynamicBg"></div>
+        <header>
+            <nav class="navbar">
+                <a href="index.html">Home</a>
+                <a href="Portfolio Website/Page 2/blog.html">Blog</a>
+                <a href="Portfolio Website/Page 3/achievements.html">Achievements</a>
+                <a href="Portfolio Website/Page 4/programmingprojects.html">Programming Projects</a>
+                <a href="Portfolio Website/Page 5/resume.html">Resume</a>
+                <a href="Portfolio Website/Page 6/running.html">⚡⚡⚡</a>
+            </nav>
+        </header>
+        <article class="fade-in">
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1 class="hero-title">Anthony Tom</h1>
+                    <p class="hero-subtitle">Mathematics and Computer Science at Carnegie&nbsp;Mellon</p>
+                    <p class="hero-description">Certified Associate in Project Management</p>
+                    <div class="linkedin-connect">
+                        <a href="https://www.linkedin.com/in/anthonytom1/" target="_blank" class="linkedin-button">
+                            <img id="linkedinlogo" src="Portfolio Website/Page 1/LinkedIn.png" alt="LinkedIn Profile"/>
+                            <span>Connect on LinkedIn</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="Portfolio Website/Images/Anthony Tom Photo 1.jpeg" class="hero-photo" alt="Anthony Tom Professional Photo"/>
+                </div>
+            </div>
+
+
+            <div class="content-grid">
+                <div class="info-card full-width-card">
+                    <h2>About Me</h2>
+                    <p>Hello! I am a second-year student at Carnegie Mellon University studying mathematical sciences with a minor in computer science. I am a Certified Associate in Project Management (CAPM) with a strong interest in leading projects, coordinating teams, and applying structured methodologies to deliver results efficiently.</p>
+                </div>
+
+                <div class="info-card full-width-card">
+                    <h2>My Mission</h2>
+                    <p>My ultimate goal is to make contributions that advance humanity through research and innovative projects that address real-world challenges and create positive change in society. I combine my passion for mathematics, computer science, and other fields to drive meaningful impact.</p>
+                </div>
+
+                <div class="info-card">
+                    <h2>Current Roles</h2>
+                    <ul>
+                        <li>15-112 Teaching Assistant (Spring 2026)</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h2>Academic Focus</h2>
+                    <ul>
+                        <li>Mathematical Sciences Major</li>
+                        <li>Computer Science Minor</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h2>Professional Interests</h2>
+                    <ul>
+                        <li>Entrepreneurship</li>
+                        <li>Project Innovation</li>
+                        <li>Data Science</li>
+                        <li>Software Engineering</li>
+                        <li>Project Management</li>
+                        <li>Academic Research</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h2>Relevant CMU Courses</h2>
+                    <ul>
+                        <li><b>07-180</b> - Concepts in Artificial Intelligence</li>
+                        <li><b>15-112</b> - Fundamentals of Programming and Computer Science (Python)</li>
+                        <li><b>15-122</b> - Principles of Imperative Computation (C)</li>
+                        <li><b>15-150</b> - Principles of Functional Programming (SML)</li>
+                        <li><b>15-210</b> - Parallel and Sequential Data Structures and Algorithms (SML)</li>
+                        <li><b>15-213</b> - Introduction to Computer Systems (C)</li>
+                        <li><b>15-251</b> - Great Ideas in Theoretical Computer Science (Discrete Mathematics)</li>
+                        <li><b>17-313</b> - Foundations of Software Engineering</li>
+                        <li><b>21-127</b> - Concepts of Mathematics</li>
+                        <li><b>21-128</b> - Mathematical Concepts and Proofs</li>
+                        <li><b>21-241</b> - Matrices and Linear Transformations</li>
+                        <li><b>21-259</b> - Calculus in Three Dimensions</li>
+                        <li><b>21-260</b> - Differential Equations</li>
+                        <li><b>38-304</b> - Reading and Writing Science</li>
+                        <li><b>70-366</b> - Intellectual Property and E-Commerce</li>
+                        <li><b>76-107</b> - Writing about Data</li>
+                        <li><b>76-108</b> - Writing about Public Problems</li>
+                        <li><b>80-310</b> - Formal Logic</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h2>Programming Languages</h2>
+                    <ul>
+                        <li>Python (Pandas, NumPy)</li>
+                        <li>HTML, CSS, JavaScript</li>
+                        <li>SQL</li>
+                        <li>TypeScript</li>
+                        <li>C</li>
+                        <li>Rust</li>
+                        <li>Unity</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!--<div class="carousel-section">
+                <h2>My Journey & Involvement</h2>
+                <div class="carousel-container">
+                    <div class="carousel-track">
+                        <div class="carousel-slide">
+                            <img src="Portfolio Website/Images/placeholder1.jpg" alt="Student Organizations">
+                            <div class="carousel-caption">
+                                <h3>Student Organizations</h3>
+                                <p>Active member of CMU ScottyLabs and Game Creation Society</p>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Portfolio Website/Images/placeholder2.jpg" alt="Project Management">
+                            <div class="carousel-caption">
+                                <h3>Project Management</h3>
+                                <p>CAPM certified with maximum scores in all domains</p>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Portfolio Website/Images/placeholder3.jpg" alt="Leadership">
+                            <div class="carousel-caption">
+                                <h3>Leadership Experience</h3>
+                                <p>Former Key Club Lieutenant Governor and multiple leadership roles</p>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Portfolio Website/Images/placeholder4.jpg" alt="Academic Excellence">
+                            <div class="carousel-caption">
+                                <h3>Academic Excellence</h3>
+                                <p>Dean's List recipient and Class Salutatorian</p>
+                            </div>
+                        </div>
+                        <div class="carousel-slide">
+                            <img src="Portfolio Website/Images/placeholder5.jpg" alt="Community Service">
+                            <div class="carousel-caption">
+                                <h3>Community Impact</h3>
+                                <p>150+ service hours and Member of the Year recognition</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-nav prev" onclick="moveSlide(-1)">❮</button>
+                    <button class="carousel-nav next" onclick="moveSlide(1)">❯</button>
+                </div>
+                <div class="carousel-dots">
+                    <span class="dot active" onclick="currentSlide(0)"></span>
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                </div>
+            </div>-->
+        </article>
+        <footer>
+            <div><span>&#169; Anthony Tom</span></div>
+        </footer>
+
+        <script>
+            let currentSlideIndex = 0;
+
+            function moveSlide(direction) {
+                const track = document.querySelector('.carousel-track');
+                const slides = document.querySelectorAll('.carousel-slide');
+                const dots = document.querySelectorAll('.dot');
+                
+                currentSlideIndex += direction;
+                
+                if (currentSlideIndex < 0) {
+                    currentSlideIndex = slides.length - 1;
+                } else if (currentSlideIndex >= slides.length) {
+                    currentSlideIndex = 0;
+                }
+                
+                track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+                
+                dots.forEach(dot => dot.classList.remove('active'));
+                dots[currentSlideIndex].classList.add('active');
+            }
+
+            function currentSlide(index) {
+                const track = document.querySelector('.carousel-track');
+                const dots = document.querySelectorAll('.dot');
+                
+                currentSlideIndex = index;
+                track.style.transform = `translateX(-${currentSlideIndex * 100}%)`;
+                
+                dots.forEach(dot => dot.classList.remove('active'));
+                dots[currentSlideIndex].classList.add('active');
+            }
+
+            const carouselTrackProbe = document.querySelector('.carousel-track');
+            if (carouselTrackProbe) {
+                setInterval(() => {
+                    moveSlide(1);
+                }, 5000);
+            }
+
+            document.addEventListener('DOMContentLoaded', function () {
+                if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    return;
+                }
+
+                const dynamicBg = document.getElementById('dynamicBg');
+
+                const caveColors = [
+                    { r: 252, g: 253, b: 255 },
+                    { r: 248, g: 251, b: 254 },
+                    { r: 245, g: 250, b: 255 },
+                    { r: 240, g: 249, b: 252 },
+                    { r: 235, g: 245, b: 250 },
+                    { r: 232, g: 243, b: 251 },
+                    { r: 225, g: 238, b: 248 },
+                    { r: 218, g: 233, b: 245 },
+                    { r: 210, g: 228, b: 242 },
+                    { r: 202, g: 222, b: 238 },
+                    { r: 196, g: 216, b: 234 }
+                ];
+                
+                function interpolateColor(color1, color2, factor) {
+                    return {
+                        r: Math.round(color1.r + (color2.r - color1.r) * factor),
+                        g: Math.round(color1.g + (color2.g - color1.g) * factor),
+                        b: Math.round(color1.b + (color2.b - color1.b) * factor)
+                    };
+                }
+                
+                function rgbToHex(r, g, b) {
+                    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+                }
+                
+                function updateCaveBackground(scrollProgress) {
+                    // Calculate which two colors to interpolate between
+                    const totalColors = caveColors.length - 1;
+                    const scaledProgress = scrollProgress * totalColors;
+                    const colorIndex = Math.floor(scaledProgress);
+                    const factor = scaledProgress - colorIndex;
+                    
+                    // Get the two colors to interpolate between
+                    const color1 = caveColors[Math.min(colorIndex, caveColors.length - 1)];
+                    const color2 = caveColors[Math.min(colorIndex + 1, caveColors.length - 1)];
+                    
+                    // Interpolate between the colors
+                    const interpolatedColor = interpolateColor(color1, color2, factor);
+                    
+                    // Create a subtle gradient with the interpolated color
+                    const baseColor = rgbToHex(interpolatedColor.r, interpolatedColor.g, interpolatedColor.b);
+                    const darkerColor = rgbToHex(
+                        Math.max(interpolatedColor.r - 10, 0),
+                        Math.max(interpolatedColor.g - 10, 0),
+                        Math.max(interpolatedColor.b - 10, 0)
+                    );
+                    const lighterColor = rgbToHex(
+                        Math.min(interpolatedColor.r + 10, 255),
+                        Math.min(interpolatedColor.g + 10, 255),
+                        Math.min(interpolatedColor.b + 10, 255)
+                    );
+
+                    dynamicBg.style.background = `linear-gradient(135deg, ${lighterColor} 0%, ${baseColor} 50%, ${darkerColor} 100%)`;
+                }
+                
+                // Smooth scroll-based cave exploration
+                let ticking = false;
+                
+                function handleScroll() {
+                    if (!ticking) {
+                        requestAnimationFrame(() => {
+                            const scrollY = window.scrollY;
+                            const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+                            const scrollProgress = Math.min(scrollY / documentHeight, 1);
+                            
+                            // Update background based on scroll progress
+                            updateCaveBackground(scrollProgress);
+                            
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                }
+                
+                // Add scroll event listener
+                window.addEventListener('scroll', handleScroll);
+                
+                // Initialize with entrance colors
+                updateCaveBackground(0);
+            });
+        </script>
+        <script src="Portfolio Website/Page 1/script.js"></script>
+    </body>
+</html>
