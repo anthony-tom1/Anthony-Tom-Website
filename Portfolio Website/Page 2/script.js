@@ -61,53 +61,44 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
-    // Add hover effects to project links
-    const projectLinks = document.querySelectorAll('.project-link');
-    projectLinks.forEach(link => {
-        link.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-8px) scale(1.02)';
-        });
-        
-        link.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-        });
-    });
+    // Typing page title — invisible measure retains layout (no jumping boxes below)
+    const pageTitle = document.querySelector('.hero-title, h1');
+    if (pageTitle) {
+        const text = pageTitle.textContent.trim();
+        if (!text.length) {
+            /* skip */
+        } else {
+            pageTitle.setAttribute('aria-label', text);
+            pageTitle.textContent = '';
+            pageTitle.classList.add('hero-title-typewriter');
 
-    // Add typing effect to hero title
-    const heroTitle = document.querySelector('.hero-title');
-    if (heroTitle) {
-        const text = heroTitle.textContent;
-        heroTitle.textContent = '';
-        
-        let i = 0;
-        const typeWriter = () => {
-            if (i < text.length) {
-                heroTitle.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
-            } else {
-                // Remove cursor after typing is complete
-                setTimeout(() => {
-                    // Add shining animation after typing completes
-                    heroTitle.classList.add('shining');
-                }, 1000);
-            }
-        };
-        
-        // Start typing effect after a short delay
-        setTimeout(typeWriter, 500);
-    }
+            const slot = document.createElement('span');
+            slot.className = 'hero-title-typewriter-slot';
 
-    // Add parallax effect to background
-    window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
-        const parallax = document.querySelector('body');
-        const speed = scrolled * 0.5;
-        
-        if (parallax) {
-            parallax.style.backgroundPosition = `center ${speed}px`;
+            const measure = document.createElement('span');
+            measure.className = 'hero-title-typewriter-measure';
+            measure.setAttribute('aria-hidden', 'true');
+            measure.textContent = text;
+
+            const typed = document.createElement('span');
+            typed.className = 'hero-title-typewriter-typed';
+
+            slot.appendChild(measure);
+            slot.appendChild(typed);
+            pageTitle.appendChild(slot);
+
+            let i = 0;
+            const typeWriter = () => {
+                if (i < text.length) {
+                    typed.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            };
+
+            setTimeout(typeWriter, 500);
         }
-    });
+    }
 
     // Add click animation to buttons
     const buttons = document.querySelectorAll('a, button');
@@ -132,6 +123,27 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 600);
         });
     });
+
+    const breadRain = document.querySelector('.bread-rain');
+    if (
+        breadRain &&
+        !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    ) {
+        const count = 28;
+        const frag = document.createDocumentFragment();
+        for (let i = 0; i < count; i++) {
+            const el = document.createElement('span');
+            el.className = 'bread-drop';
+            el.textContent = '🍞';
+            el.setAttribute('aria-hidden', 'true');
+            el.style.left = `${Math.random() * 100}%`;
+            el.style.animationDuration = `${4 + Math.random() * 6}s`;
+            el.style.animationDelay = `${-Math.random() * 12}s`;
+            el.style.fontSize = `${1.35 + Math.random() * 1.1}rem`;
+            frag.appendChild(el);
+        }
+        breadRain.appendChild(frag);
+    }
 });
 
 // Add CSS for ripple effect

@@ -1,3 +1,56 @@
+/* Blog page — light sky + falling bread */
+body.blog-page {
+    background-color: #c9e8ff;
+    background-image: linear-gradient(
+        165deg,
+        #dff2ff 0%,
+        #c4e4ff 45%,
+        #aed7fb 100%
+    );
+    background-attachment: fixed;
+}
+
+.blog-page .bread-rain {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.blog-page header,
+.blog-page article,
+.blog-page footer {
+    position: relative;
+    z-index: 1;
+}
+
+.blog-page .bread-drop {
+    position: absolute;
+    top: -12vh;
+    line-height: 1;
+    opacity: 0.88;
+    user-select: none;
+    animation: bread-fall linear infinite;
+    will-change: transform;
+}
+
+@keyframes bread-fall {
+    from {
+        transform: translateY(0) translateZ(0) rotate(0deg);
+    }
+    to {
+        transform: translateY(115vh) translateZ(0) rotate(360deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .blog-page .bread-drop {
+        animation: none;
+        opacity: 0;
+    }
+}
+
 /* About Me Page Specific Styles */
 
 /* Profile Image */

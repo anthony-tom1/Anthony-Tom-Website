@@ -1,8 +1,58 @@
-/* Running tracker — cohesive with Asset Bridge palette; miles title accent preserved */
-
+/* Running tracker — dark sky + thunder rain backdrop */
 .running-page {
-  background: transparent;
+  background-color: #061a33;
+  background-image: radial-gradient(
+      ellipse 120% 85% at 50% -10%,
+      rgba(94, 140, 200, 0.22),
+      transparent 55%
+    ),
+    linear-gradient(168deg, #0a2748 0%, #06162e 52%, #040d1c 100%);
+  background-attachment: fixed;
 }
+
+.running-page .lightning-rain {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.running-page header,
+.running-page article,
+.running-page footer {
+  position: relative;
+  z-index: 1;
+}
+
+.running-page .lightning-drop {
+  position: absolute;
+  top: -12vh;
+  line-height: 1;
+  opacity: 0.92;
+  filter: drop-shadow(0 0 6px rgba(180, 220, 255, 0.45));
+  user-select: none;
+  animation: lightning-fall linear infinite;
+  will-change: transform;
+}
+
+@keyframes lightning-fall {
+  from {
+    transform: translateY(0) translateZ(0) rotate(-8deg);
+  }
+  to {
+    transform: translateY(115vh) translateZ(0) rotate(8deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .running-page .lightning-drop {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+/* Running tracker — cohesive with Asset Bridge palette; miles title accent preserved */
 
 .running-page article {
   padding-top: var(--spacing-xl);

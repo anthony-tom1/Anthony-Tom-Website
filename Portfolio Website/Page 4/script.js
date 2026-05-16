@@ -61,35 +61,55 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
-    // Add typing effect to page title
-    const pageTitle = document.querySelector('h1');
-    if (pageTitle) {
-        const text = pageTitle.textContent;
-        pageTitle.textContent = '';
+    // Add hover effects to project links
+    const projectLinks = document.querySelectorAll('.project-link');
+    projectLinks.forEach(link => {
+        link.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px) scale(1.02)';
+        });
         
-        let i = 0;
-        const typeWriter = () => {
-            if (i < text.length) {
-                pageTitle.textContent += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
-            }
-        };
-        
-        // Start typing effect after a short delay
-        setTimeout(typeWriter, 500);
-    }
-
-    // Add parallax effect to background
-    window.addEventListener('scroll', function() {
-        const scrolled = window.pageYOffset;
-        const parallax = document.querySelector('body');
-        const speed = scrolled * 0.5;
-        
-        if (parallax) {
-            parallax.style.backgroundPosition = `center ${speed}px`;
-        }
+        link.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
     });
+
+    const pageTitle = document.querySelector('.hero-title');
+    if (pageTitle) {
+        const text = pageTitle.textContent.trim();
+        if (!text.length) {
+            /* no title */
+        } else {
+            pageTitle.setAttribute('aria-label', text);
+            pageTitle.textContent = '';
+            pageTitle.classList.add('hero-title-typewriter');
+
+            const slot = document.createElement('span');
+            slot.className = 'hero-title-typewriter-slot';
+
+            const measure = document.createElement('span');
+            measure.className = 'hero-title-typewriter-measure';
+            measure.setAttribute('aria-hidden', 'true');
+            measure.textContent = text;
+
+            const typed = document.createElement('span');
+            typed.className = 'hero-title-typewriter-typed';
+
+            slot.appendChild(measure);
+            slot.appendChild(typed);
+            pageTitle.appendChild(slot);
+
+            let i = 0;
+            const typeWriter = () => {
+                if (i < text.length) {
+                    typed.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            };
+
+            setTimeout(typeWriter, 500);
+        }
+    }
 
     // Add click animation to buttons
     const buttons = document.querySelectorAll('a, button');

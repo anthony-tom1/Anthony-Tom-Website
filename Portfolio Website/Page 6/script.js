@@ -1,6 +1,6 @@
 // Miles Run Tracker - Rolling number wheel
 document.addEventListener('DOMContentLoaded', function() {
-  const MILES_RUN = 1002.1;
+  const MILES_RUN = 1161.4;
   const PLACEHOLDER_CHAR = '🍞';
   const PLACEHOLDER_PAUSE = 1200;
   const DIGIT_HEIGHT = 56;
@@ -73,21 +73,63 @@ document.addEventListener('DOMContentLoaded', function() {
 
   init();
 
-  // Typing effect for hero title (same as other pages)
+  // Typing hero title — reserve layout (no jump in content below)
   const pageTitle = document.querySelector('.hero-title');
   if (pageTitle) {
     const text = pageTitle.textContent.trim();
-    pageTitle.textContent = '';
+    if (!text.length) {
+      /* skip */
+    } else {
+      pageTitle.setAttribute('aria-label', text);
+      pageTitle.textContent = '';
+      pageTitle.classList.add('hero-title-typewriter');
 
-    let i = 0;
-    const typeWriter = () => {
-      if (i < text.length) {
-        pageTitle.textContent += text.charAt(i);
-        i++;
-        setTimeout(typeWriter, 100);
-      }
-    };
+      const slot = document.createElement('span');
+      slot.className = 'hero-title-typewriter-slot';
 
-    setTimeout(typeWriter, 500);
+      const measure = document.createElement('span');
+      measure.className = 'hero-title-typewriter-measure';
+      measure.setAttribute('aria-hidden', 'true');
+      measure.textContent = text;
+
+      const typed = document.createElement('span');
+      typed.className = 'hero-title-typewriter-typed';
+
+      slot.appendChild(measure);
+      slot.appendChild(typed);
+      pageTitle.appendChild(slot);
+
+      let i = 0;
+      const typeWriter = () => {
+        if (i < text.length) {
+          typed.textContent += text.charAt(i);
+          i++;
+          setTimeout(typeWriter, 100);
+        }
+      };
+
+      setTimeout(typeWriter, 500);
+    }
+  }
+
+  const lightningRain = document.querySelector('.lightning-rain');
+  if (
+    lightningRain &&
+    !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  ) {
+    const count = 30;
+    const frag = document.createDocumentFragment();
+    for (let i = 0; i < count; i++) {
+      const el = document.createElement('span');
+      el.className = 'lightning-drop';
+      el.textContent = '\u26A1';
+      el.setAttribute('aria-hidden', 'true');
+      el.style.left = `${Math.random() * 100}%`;
+      el.style.animationDuration = `${4 + Math.random() * 6}s`;
+      el.style.animationDelay = `${-Math.random() * 12}s`;
+      el.style.fontSize = `${1.35 + Math.random() * 1.1}rem`;
+      frag.appendChild(el);
+    }
+    lightningRain.appendChild(frag);
   }
 });
