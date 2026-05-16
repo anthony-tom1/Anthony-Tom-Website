@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
+<<<<<<< HEAD
     // Typing page title — layout-stable slot (matches other inner pages)
     const pageTitle = document.querySelector('.hero-title');
     if (pageTitle) {
@@ -100,6 +101,38 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+=======
+    // Add typing effect to page title
+    const pageTitle = document.querySelector('.hero-title');
+    if (pageTitle) {
+        const text = pageTitle.textContent;
+        pageTitle.textContent = '';
+        
+        let i = 0;
+        const typeWriter = () => {
+            if (i < text.length) {
+                pageTitle.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        };
+        
+        // Start typing effect after a short delay
+        setTimeout(typeWriter, 500);
+    }
+
+    // Add parallax effect to background
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const parallax = document.querySelector('body');
+        const speed = scrolled * 0.5;
+        
+        if (parallax) {
+            parallax.style.backgroundPosition = `center ${speed}px`;
+        }
+    });
+
+>>>>>>> a84048377e99050891e96d67d66e017a79a7976c
     // Add click animation to buttons
     const buttons = document.querySelectorAll('a, button');
     buttons.forEach(button => {

@@ -61,12 +61,21 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
+<<<<<<< HEAD
     // Typing page title — invisible measure retains layout (no jumping boxes below)
     const pageTitle = document.querySelector('.hero-title, h1');
     if (pageTitle) {
         const text = pageTitle.textContent.trim();
         if (!text.length) {
             /* skip */
+=======
+    // Typing page title — layout-stable slot (matches other inner pages)
+    const pageTitle = document.querySelector('.hero-title');
+    if (pageTitle) {
+        const text = pageTitle.textContent.trim();
+        if (!text.length) {
+            /* no title */
+>>>>>>> a84048377e99050891e96d67d66e017a79a7976c
         } else {
             pageTitle.setAttribute('aria-label', text);
             pageTitle.textContent = '';
@@ -123,6 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 600);
         });
     });
+<<<<<<< HEAD
 
     const breadRain = document.querySelector('.bread-rain');
     if (
@@ -144,6 +154,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         breadRain.appendChild(frag);
     }
+=======
+>>>>>>> a84048377e99050891e96d67d66e017a79a7976c
 });
 
 // Add CSS for ripple effect
