@@ -1,13 +1,13 @@
-// Miles Run Tracker - Rolling number wheel
+// Miles Run & Calories Burned Trackers - Rolling number wheels
 document.addEventListener('DOMContentLoaded', function() {
-  const MILES_RUN = 1161.4;
+  const MILES_RUN = 1294.7;
+  const CALORIES_BURNED = 163915;
   const PLACEHOLDER_CHAR = '🍞';
   const PLACEHOLDER_PAUSE = 1200;
   const DIGIT_HEIGHT = 56;
-  const positions = ['thousands', 'hundreds', 'tens', 'ones', 'tenths'];
 
   function createDigitStrip(cycles = 8) {
-    const strip = [];      
+    const strip = [];
     strip.push(`<span>${PLACEHOLDER_CHAR}</span>`);
     for (let c = 0; c < cycles; c++) {
       for (let i = 0; i <= 9; i++) {
@@ -15,17 +15,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     return strip.join('');
-  }
-
-  function initWheels() {
-    positions.forEach(pos => {
-      const wheel = document.querySelector(`.digit-wheel[data-position="${pos}"]`);
-      if (wheel) {
-        const strip = wheel.querySelector('.digit-strip');
-        strip.innerHTML = createDigitStrip();
-        strip.style.transform = 'translateY(0)';
-      }
-    });
   }
 
   function getTranslateY(digit) {
@@ -39,9 +28,26 @@ document.addEventListener('DOMContentLoaded', function() {
     return [...padded, dec].map(Number);
   }
 
-  function runStartAnimation() {
-    const digitEls = positions.map(pos => document.querySelector(`.digit-wheel[data-position="${pos}"]`)).filter(Boolean);
-    const targetDigits = formatMiles(MILES_RUN);
+  function formatCalories(value) {
+    const clamped = Math.min(9999999, Math.max(0, Math.floor(value)));
+    return String(clamped).padStart(7, '0').split('').map(Number);
+  }
+
+  function initWheels(root, positions) {
+    positions.forEach(pos => {
+      const wheel = root.querySelector(`.digit-wheel[data-position="${pos}"]`);
+      if (wheel) {
+        const strip = wheel.querySelector('.digit-strip');
+        strip.innerHTML = createDigitStrip();
+        strip.style.transform = 'translateY(0)';
+      }
+    });
+  }
+
+  function runStartAnimation(root, positions, targetDigits) {
+    const digitEls = positions
+      .map(pos => root.querySelector(`.digit-wheel[data-position="${pos}"]`))
+      .filter(Boolean);
 
     digitEls.forEach((wheel) => {
       const strip = wheel.querySelector('.digit-strip');
@@ -50,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
       strip.style.transform = 'translateY(0)';
     });
 
-    const stopOrder = [4, 3, 2, 1, 0];
+    const stopOrder = [...positions.keys()].reverse();
     const stopDelay = 320;
 
     stopOrder.forEach((wheelIndex, order) => {
@@ -66,12 +72,33 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  function init() {
-    initWheels();
-    setTimeout(runStartAnimation, PLACEHOLDER_PAUSE);
+  function initTracker(root, positions, targetDigits) {
+    if (!root) return;
+    initWheels(root, positions);
+    setTimeout(() => runStartAnimation(root, positions, targetDigits), PLACEHOLDER_PAUSE);
   }
 
-  init();
+  const milesPositions = ['thousands', 'hundreds', 'tens', 'ones', 'tenths'];
+  const caloriesPositions = [
+    'millions',
+    'hundred-thousands',
+    'ten-thousands',
+    'thousands',
+    'hundreds',
+    'tens',
+    'ones'
+  ];
+
+  initTracker(
+    document.getElementById('miles-tracker'),
+    milesPositions,
+    formatMiles(MILES_RUN)
+  );
+  initTracker(
+    document.getElementById('calories-tracker'),
+    caloriesPositions,
+    formatCalories(CALORIES_BURNED)
+  );
 
   // Typing hero title — reserve layout (no jump in content below)
   const pageTitle = document.querySelector('.hero-title');

@@ -70,6 +70,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1.75rem;
   margin: 2rem 0;
 }
 
@@ -183,6 +184,20 @@
   font-size: 0.9375rem;
   letter-spacing: 0.04em;
   font-family: var(--font-sans);
+}
+
+@media (max-width: 520px) {
+  .tracker-container {
+    padding: 2rem 1.25rem;
+  }
+
+  #calories-tracker .digit-wheel {
+    width: 36px;
+  }
+
+  #calories-tracker .digit-strip span {
+    font-size: 1.5rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
